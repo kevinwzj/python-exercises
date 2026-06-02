@@ -8,8 +8,7 @@ Prerequisites
 
 Setup
 - python -m venv .venv
-- .venv\Scripts\activate   (Windows)
-- source .venv/bin/activate  (macOS / Linux)
+- .venv/Scripts/activate   (Windows)
 - pip install -r requirements.txt
 - (optional) pip install -r dev-requirements.txt
 
