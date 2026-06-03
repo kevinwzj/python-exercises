@@ -8,27 +8,35 @@ Prerequisites
 
 Setup
 - python -m venv .venv
-- .venv/Scripts/activate   (Windows)
+- .venv\Scripts\activate   (Windows)
+- source .venv/bin/activate  (macOS / Linux)
 - pip install -r requirements.txt
-- (optional) pip install -r dev-requirements.txt
+- pip install -r dev-requirements.txt  # optional: dev tools (black, flake8, mypy, pytest-cov)
 
 Running tests
 - Run the full test suite: python -m pytest -q
 - Run a single test: python -m pytest tests/test_exercise1.py::test_greet -q
 
+Coverage
+- Install coverage tools: pip install -r dev-requirements.txt (or pip install pytest-cov coverage)
+- Run coverage and generate HTML report:
+  python -m pytest --cov=exercises --cov-report=term --cov-report=html -q
+- Open the HTML report at htmlcov/index.html
+- Note: a .coveragerc is included to omit tests and virtualenv files from the report
+
 Formatting and linting
 - Format: black .
 - Lint: flake8 .
 - Type-check: mypy .
-- Recommended dev tools: black, flake8, mypy, isort
+- Recommended dev tools: black, flake8, mypy, isort, pytest-cov
 
 Adding tests
 - Place tests in the tests/ directory using pytest conventions.
 - Keep tests deterministic and fast.
-- Use subprocess to test CLI scripts when needed.
+- Prefer unit-testing pure functions; use subprocess for CLI scripts when necessary.
 
-Continuous Integration (suggestion)
-- Add a GitHub Actions workflow that runs: black --check, flake8, mypy, and pytest on push and PRs.
+Continuous Integration
+- Add a GitHub Actions workflow that runs: black --check, flake8, mypy, and pytest --cov on push and PRs.
 
 Contributing
 - Create feature branches from main
