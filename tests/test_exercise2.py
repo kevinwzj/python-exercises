@@ -1,5 +1,10 @@
 import subprocess
 import sys
+from exercises.exercise2 import greet
+
+
+def test_greet():
+    assert greet(" alice ") == "hello Alice"
 
 
 def test_exercise2_script():
