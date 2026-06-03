@@ -1,3 +1,4 @@
+import runpy
 import subprocess
 import sys
 from exercises.exercise1 import greet, main
@@ -13,8 +14,21 @@ def test_cli():
     assert res.stdout.strip() == "Hello, Bob!"
 
 
+def test_cli_no_args():
+    res = subprocess.run([sys.executable, "exercises/exercise1.py"], capture_output=True, text=True)
+    assert res.returncode == 0
+    assert res.stdout.strip() == "Hello, World!"
+
+
 def test_main_uses_argv(monkeypatch, capsys):
     monkeypatch.setattr(sys, "argv", ["exercise1.py", "Charlie"])
     main()
     captured = capsys.readouterr()
     assert captured.out.strip() == "Hello, Charlie!"
+
+
+def test_run_as_module(monkeypatch, capsys):
+    monkeypatch.setattr(sys, "argv", ["exercise1.py", "Zoe"])
+    runpy.run_path("exercises/exercise1.py", run_name="__main__")
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "Hello, Zoe!"

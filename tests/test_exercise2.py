@@ -1,3 +1,4 @@
+import runpy
 import subprocess
 import sys
 from exercises.exercise2 import greet, main
@@ -24,3 +25,10 @@ def test_main_with_input(monkeypatch, capsys):
     main()
     captured = capsys.readouterr()
     assert captured.out.strip() == "hello Dave"
+
+
+def test_run_as_module(capsys, monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt="": "erin")
+    runpy.run_path("exercises/exercise2.py", run_name="__main__")
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "hello Erin"
