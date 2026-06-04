@@ -13,7 +13,12 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Greet someone.")
-    parser.add_argument("name", nargs="?", default="World", help="Name to greet")
+    parser.add_argument(
+        "name",
+        nargs="?",
+        default="World",
+        help="Name to greet"
+    )
     args = parser.parse_args()
     print(greet(args.name))
 
