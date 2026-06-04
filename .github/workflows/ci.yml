@@ -22,17 +22,20 @@ jobs:
           if (Test-Path 'dev-requirements.txt') {
             pip install -r dev-requirements.txt
           } else {
-            pip install black flake8 mypy pytest pytest-cov
+            pip install black isort flake8 mypy pytest pytest-cov coverage
           }
+      - name: Import sort check
+        shell: pwsh
+        run: python -m isort --check-only --profile black .
       - name: Format check
         shell: pwsh
-        run: black --check .
+        run: python -m black --check .
       - name: Lint
         shell: pwsh
-        run: flake8 .
+        run: python -m flake8 .
       - name: Type-check
         shell: pwsh
-        run: mypy .
+        run: python -m mypy .
       - name: Tests with coverage
         shell: pwsh
         run: python -m pytest --cov=exercises --cov-report=term --cov-report=xml --cov-report=html -q
