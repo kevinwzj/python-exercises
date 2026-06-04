@@ -48,3 +48,13 @@ pip-wheel-metadata/
 # Logs
 *.log
 
+# Coverage files
+coverage.xml
+
+# Python version
+.python-version
+
+# pip artifacts
+pip-log.txt
+pip-delete-this-directory.txt
+
