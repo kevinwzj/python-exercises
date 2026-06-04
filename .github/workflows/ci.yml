@@ -35,9 +35,15 @@ jobs:
         run: mypy .
       - name: Tests with coverage
         shell: pwsh
-        run: python -m pytest --cov=exercises --cov-report=term --cov-report=xml -q
-      - name: Upload coverage artifact
+        run: python -m pytest --cov=exercises --cov-report=term --cov-report=xml --cov-report=html -q
+      - name: Upload coverage artifact (xml)
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
           path: coverage.xml
+      - name: Upload coverage artifact (html)
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
+          path: htmlcov
+
