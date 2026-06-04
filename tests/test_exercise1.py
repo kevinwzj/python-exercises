@@ -9,13 +9,19 @@ def test_greet():
 
 
 def test_cli():
-    res = subprocess.run([sys.executable, "exercises/exercise1.py", "Bob"], capture_output=True, text=True)
+    res = subprocess.run(
+        [sys.executable, "exercises/exercise1.py", "Bob"],
+        capture_output=True,
+        text=True,
+    )
     assert res.returncode == 0
     assert res.stdout.strip() == "Hello, Bob!"
 
 
 def test_cli_no_args():
-    res = subprocess.run([sys.executable, "exercises/exercise1.py"], capture_output=True, text=True)
+    res = subprocess.run(
+        [sys.executable, "exercises/exercise1.py"], capture_output=True, text=True
+    )
     assert res.returncode == 0
     assert res.stdout.strip() == "Hello, World!"
 
